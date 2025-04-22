@@ -20,7 +20,7 @@ class TripResource extends JsonResource
             'price'=>$this->price,
             'duration_days'=>$this->duration_days,
             'start_date'=>$this->start_date,
-            'end_data'=> $this->end_date,
+            'end_date'=> $this->end_date,
             'image_url'=>asset('image/'. $this->image_url)
         ];
     }

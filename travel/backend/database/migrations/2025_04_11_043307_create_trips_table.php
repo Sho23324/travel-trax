@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('price');
             $table->integer('duration_days');
-            $table->timestamp('start_date')->useCurrent();
+            $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->string('image_url')->nullable();
             $table->timestamps();

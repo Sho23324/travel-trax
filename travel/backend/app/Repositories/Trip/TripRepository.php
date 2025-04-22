@@ -13,4 +13,8 @@ class TripRepository implements TripRepositoryInterface{
     public function show($id) {
         return Trip::find($id);
     }
+
+    public function store($validatedData) {
+        return Trip::create($validatedData);
+    }
 }

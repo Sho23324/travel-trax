@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 import { signOut, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
+import CreateTripBtn from "../createTripBtn/page";
 
 const Navbar = () => {
     const [showModal, setShowModal] = useState(false);
@@ -42,7 +43,7 @@ const Navbar = () => {
                     />
                 </Link>
                 <div className="flex">
-                    <div>
+                    <div className="">
                         <div className="cursor-pointer" onClick={toggleModal}>
                             <AiOutlineUser
                                 size={30}
@@ -78,9 +79,8 @@ const Navbar = () => {
                             </>
                         )}
                     </div>
-                    <button className="font-bold bg-blue-900  py-2 pl-4 pr-4 text-white ml-2 cursor-pointer rounded-full">
-                        Create Trip
-                    </button>
+
+                    <CreateTripBtn />
                 </div>
             </div>
         </div>
