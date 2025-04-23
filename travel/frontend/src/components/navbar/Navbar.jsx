@@ -69,6 +69,7 @@ const Navbar = () => {
                                     <Link href="/reservations">
                                         Reservations
                                     </Link>
+                                    <Link href="/trips">Your Trips</Link>
                                     <button
                                         onClick={() => signOut()}
                                         className="text-slate-500 text-center"

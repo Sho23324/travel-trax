@@ -157,7 +157,7 @@ export default function TripForm() {
             <Button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="w-full"
+                className="w-full bg-green-400"
             >
                 {loading ? "Submitting..." : "Create Trip"}
             </Button>

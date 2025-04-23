@@ -14,6 +14,9 @@ import { ComboboxDemo } from "../combobox";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
+import DestinationCard from "../destinationCard";
+import { RevalidatePath } from "../sever-action";
+import { CirclePlus, Plus } from "lucide-react";
 
 export default function AddDestination() {
     const [selectedDestination, setSelectedDestination] = useState("");
@@ -29,9 +32,8 @@ export default function AddDestination() {
             "http://localhost:8000/api/tripDestinations/" + 1
         );
         const destinationRecord = tripDestiResponse.data.data;
-        console.log(destinationRecord);
+        // console.log(destinationRecord);
         setDestinationRecords(destinationRecord);
-        console.log(destinationRecords);
     };
 
     useEffect(() => {
@@ -53,6 +55,7 @@ export default function AddDestination() {
                     trip_id: 1,
                 }
             );
+            RevalidatePath();
 
             console.log("Success:", response.data);
         } catch (error) {
@@ -63,8 +66,11 @@ export default function AddDestination() {
     return (
         <>
             <AlertDialog>
-                <AlertDialogTrigger className="font-bold bg-green-400  py-2 pl-4 pr-4 text-white ml-2 cursor-pointer rounded-full">
-                    Add Destination
+                <AlertDialogTrigger className="font-bold bg-green-400  py-2 pl-4 pr-4 text-white ml-2 cursor-pointer rounded">
+                    <div className="flex">
+                        <CirclePlus />
+                        Add Destination
+                    </div>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
@@ -89,12 +95,13 @@ export default function AddDestination() {
             </AlertDialog>
 
             <div className="">Destinations</div>
-            {destinationRecords?.map((record) => {
+            {destinationRecords?.map((record, index) => {
                 return (
-                    <div className="">
-                        Trip: {record.trip_id} <br />
-                        Destination: {record.destination_id}
-                    </div>
+                    <DestinationCard
+                        key={record.id}
+                        destination_id={record.destination_id}
+                        index={index}
+                    />
                 );
             })}
         </>

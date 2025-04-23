@@ -23,7 +23,7 @@ const Card = ({ place }) => {
                     />
                 )}
 
-                <div className="absolute right-0 bottom-0 capitalize p-4 bg-blue-700 text-white rounded-tl-xl font-semibold">
+                <div className="absolute right-0 bottom-0 capitalize p-4 bg-green-400 text-white rounded-tl-xl font-semibold">
                     {place.name}
                 </div>
             </div>

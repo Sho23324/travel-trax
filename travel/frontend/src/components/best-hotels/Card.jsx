@@ -20,7 +20,7 @@ const Card = ({ place }) => {
                         className="h-full w-full overflow-hidden rounded-tl-xl rounded-tr-xl object-cover"
                     />
                 )}
-                <div className="absolute right-0 bottom-0 p-4 bg-blue-700 text-white rounded-tl-xl font-semibold">
+                <div className="absolute right-0 bottom-0 p-4 bg-green-400 text-white rounded-tl-xl font-semibold">
                     {place.location}
                 </div>
             </div>
