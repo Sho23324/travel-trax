@@ -18,6 +18,8 @@ use App\Repositories\Transportation\TransportationRepository;
 use App\Repositories\Transportation\TransportationRepositoryInterface;
 use App\Repositories\Trip\TripRepository;
 use App\Repositories\Trip\TripRepositoryInterface;
+use App\Repositories\TripDestination\TripDestinationRepository;
+use App\Repositories\TripDestination\TripDestinationRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Repository\JwtAuthRepository;
@@ -48,6 +50,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->singleton(ReviewRepositoryInterface::class,ReviewRepository::class);
         $this->app->singleton(DestinationRepositoryInterface::class,DestinationRepository::class);
         $this->app->singleton(PaymentRepositoryInterface::class,PaymentRepository::class);
+        $this->app->singleton(TripDestinationRepositoryInterface::class,TripDestinationRepository::class);
         $this->app->singleton(JwtAuthRepositoryInterface::class,JwtAuthRepository::class);
     }
 }

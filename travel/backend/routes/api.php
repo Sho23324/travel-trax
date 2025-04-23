@@ -15,6 +15,7 @@ use App\Http\Controllers\jwtAuthController;
 
 
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TripDestinationController;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
@@ -31,11 +32,15 @@ Route::middleware("auth:api")->group(function(){
 
 Route::get('hotels/{id}/average-ratings', [HotelController::class, 'getHotelAverageRatings']);
 
+Route::get('tripDestinations/{tripId}', [TripDestinationController::class, 'getTripDestinations']);
+
 Route::get('hotels/{id}/ratings', [HotelController::class, 'allHotelRatings']);
 
 Route::apiResource('users', UserController::class);
 
 Route::apiResource('trips', TripController::class);
+
+Route::apiResource('tripDestinations', TripDestinationController::class);
 
 Route::apiResource('hotels', HotelController::class);
 

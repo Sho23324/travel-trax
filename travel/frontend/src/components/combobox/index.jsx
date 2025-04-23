@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,33 +17,22 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
+import axios from "axios";
 
-const frameworks = [
-    {
-        value: "next.js",
-        label: "Next.js",
-    },
-    {
-        value: "sveltekit",
-        label: "SvelteKit",
-    },
-    {
-        value: "nuxt.js",
-        label: "Nuxt.js",
-    },
-    {
-        value: "remix",
-        label: "Remix",
-    },
-    {
-        value: "astro",
-        label: "Astro",
-    },
-];
-
-export function ComboboxDemo() {
+export function ComboboxDemo({ value, onChange }) {
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState("");
+    const [data, setData] = React.useState([]);
+
+    const fetchData = async () => {
+        const response = await axios.get(
+            "http://localhost:8000/api/destinations"
+        );
+        setData(response.data.data);
+    };
+
+    React.useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -55,11 +43,7 @@ export function ComboboxDemo() {
                     aria-expanded={open}
                     className="w-[200px] justify-between"
                 >
-                    {value
-                        ? frameworks.find(
-                              (framework) => framework.value === value
-                          )?.label
-                        : "Select states..."}
+                    {value ? value.name : "Select states..."}
                     <ChevronsUpDown className="opacity-50" />
                 </Button>
             </PopoverTrigger>
@@ -72,24 +56,20 @@ export function ComboboxDemo() {
                     <CommandList>
                         <CommandEmpty>No states found.</CommandEmpty>
                         <CommandGroup>
-                            {frameworks.map((framework) => (
+                            {data.map((destination) => (
                                 <CommandItem
-                                    key={framework.value}
-                                    value={framework.value}
-                                    onSelect={(currentValue) => {
-                                        setValue(
-                                            currentValue === value
-                                                ? ""
-                                                : currentValue
-                                        );
+                                    key={destination.id}
+                                    value={destination.name}
+                                    onSelect={() => {
+                                        onChange(destination); // send both id + name
                                         setOpen(false);
                                     }}
                                 >
-                                    {framework.label}
+                                    {destination.name}
                                     <Check
                                         className={cn(
                                             "ml-auto",
-                                            value === framework.value
+                                            value?.id === destination.id
                                                 ? "opacity-100"
                                                 : "opacity-0"
                                         )}

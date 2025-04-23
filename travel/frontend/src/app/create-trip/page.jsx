@@ -12,6 +12,8 @@ import {
     PopoverTrigger,
     PopoverContent,
 } from "@/components/ui/popover";
+import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/navigation"; // or "next/router" in older Next.js
 
 export default function TripForm() {
     const [title, setTitle] = useState("");
@@ -26,6 +28,11 @@ export default function TripForm() {
 
     const duration_days =
         startDate && endDate ? differenceInDays(endDate, startDate) + 1 : 0;
+
+    const router = useRouter();
+    const handleTripCreated = (tripId) => {
+        router.push(`/add-destinations?trip_id=${tripId}`);
+    };
 
     const handleSubmit = async () => {
         if (
@@ -53,6 +60,7 @@ export default function TripForm() {
             });
 
             alert("Trip submitted!");
+            handleTripCreated(res.data.data.id);
         } catch (err) {
             console.error(err);
             alert("Failed to submit trip");
@@ -151,7 +159,7 @@ export default function TripForm() {
                 disabled={loading}
                 className="w-full"
             >
-                {loading ? "Submitting..." : "Submit Trip"}
+                {loading ? "Submitting..." : "Create Trip"}
             </Button>
         </div>
     );
