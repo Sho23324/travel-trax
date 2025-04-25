@@ -15,4 +15,14 @@ class DestinationRepository implements DestinationRepositoryInterface {
     public function store($validatedData) {
         return Destination::create($validatedData);
     }
+
+    public function update($validatedData, $id) {
+        $destination = Destination::find($id);
+        return $destination->update($validatedData);
+    }
+
+    public function delete($id) {
+        $destination = Destination::find($id);
+        return $destination->delete($id);
+    }
 }

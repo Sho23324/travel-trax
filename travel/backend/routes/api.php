@@ -40,6 +40,8 @@ Route::apiResource('users', UserController::class);
 
 Route::apiResource('trips', TripController::class);
 
+Route::get('trips/users/{id}', [TripController::class, 'getTripByUserId']);
+
 Route::apiResource('tripDestinations', TripDestinationController::class);
 
 Route::apiResource('hotels', HotelController::class);

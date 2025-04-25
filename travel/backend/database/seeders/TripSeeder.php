@@ -17,6 +17,7 @@ class TripSeeder extends Seeder
         $trips = [
             [
                 'id'=> 1,
+                'user_id'=> 1,
                 'title'=>'Ngew Saung trip',
                 'description'=> 'For fun with friends',
                 'price'=> 100000,
@@ -27,6 +28,7 @@ class TripSeeder extends Seeder
             ],
             [
                 'id'=> 2,
+                'user_id'=> 2,
                 'title'=>'Ngew Saung trip',
                 'description'=> 'For fun with friends',
                 'price'=> 100000,
@@ -37,6 +39,7 @@ class TripSeeder extends Seeder
             ],
             [
                 'id'=> 3,
+                'user_id'=> 1,
                 'title'=>'Ngew Saung trip',
                 'description'=> 'For fun with friends',
                 'price'=> 100000,
@@ -47,6 +50,7 @@ class TripSeeder extends Seeder
             ],
             [
                 'id'=> 4,
+                'user_id'=> 3,
                 'title'=>'Ngew Saung trip',
                 'description'=> 'For fun with friends',
                 'price'=> 100000,

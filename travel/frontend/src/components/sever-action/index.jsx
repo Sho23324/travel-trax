@@ -1,6 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
 
-export async function RevalidatePath() {
-    revalidatePath("/add-destinations");
+export async function revalidatePage(path) {
+    revalidatePath(path);
 }

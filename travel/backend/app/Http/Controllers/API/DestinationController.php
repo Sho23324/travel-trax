@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DestinationStoreRequest;
+use App\Http\Requests\DestinationUpdateRequest;
 use App\Http\Resources\DestinationResource;
 use App\Repositories\Destination\DestinationRepositoryInterface;
 use Exception;
@@ -30,9 +32,16 @@ class DestinationController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DestinationStoreRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $imageName = time(). '.' . $request->image->extension();
+        $request->image->move(public_path('destinationImage'), $imageName);
+        $validatedData = array_merge($validatedData, ['image'=>$imageName]);
+        $validatedData = $request->validated();
+        $createdDestination = $this->destinationRepository->store($validatedData);
+
+        return $this->success($createdDestination, "Destinations created successfully", 201);
     }
 
     /**
@@ -52,9 +61,11 @@ class DestinationController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(DestinationUpdateRequest $request, string $id)
     {
-        //
+        $validatedData = $request->validated();
+        $updatedDestination = $this->destinationRepository->update($validatedData, $id);
+        return $this->success($updatedDestination, "Destinations updated successfully", 204);
     }
 
     /**
@@ -62,6 +73,7 @@ class DestinationController extends BaseController
      */
     public function destroy(string $id)
     {
-        //
+        $this->destinationRepository->delete($id);
+        return $this->success(null, "Destinations retrieved successfully", 204);
     }
 }

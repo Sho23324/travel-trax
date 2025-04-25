@@ -62,4 +62,9 @@ class TripController extends BaseController
     {
         //
     }
+
+    public function getTripByUserId(string $id) {
+        $trips = $this->tripRepository->getTripByUserId($id);
+        return $this->success($trips, "Trips by user id retrieved successfully", 200);
+    }
 }

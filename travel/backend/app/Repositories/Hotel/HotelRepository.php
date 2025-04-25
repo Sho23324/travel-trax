@@ -26,4 +26,14 @@ class HotelRepository implements HotelRepositoryInterface{
         $ratings = Review::where('hotel_id', $id)->count();
         return $ratings;
     }
+
+    public function update($id, $validatedData) {
+        $hotel = Hotel::find($id);
+        return $hotel->update($validatedData);
+    }
+
+    public function delete($id) {
+        $hotel = Hotel::find($id);
+        return $hotel->delete();
+    }
 }

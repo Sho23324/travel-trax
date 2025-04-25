@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "www.fodors.com",
+                hostname: "localhost",
             },
             {
                 protocol: "https",

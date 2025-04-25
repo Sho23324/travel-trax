@@ -7,5 +7,7 @@ interface HotelRepositoryInterface {
     public function store($validatedData);
     public function getHotelAverageRatings($id);
     public function allHotelRatings($id);
+    public function update($id, $validatedData);
+    public function delete($id);
 
 }

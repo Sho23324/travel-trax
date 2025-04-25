@@ -18,7 +18,8 @@ class DestinationResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             'description'=>$this->description,
-            'location'=>$this->location
+            'location'=>$this->location,
+            'image'=>asset('destinationImage/'. $this->image)
         ];
     }
 }

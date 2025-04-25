@@ -17,4 +17,8 @@ class TripRepository implements TripRepositoryInterface{
     public function store($validatedData) {
         return Trip::create($validatedData);
     }
+
+    public function getTripByUserId($id) {
+        return Trip::where("user_id", $id)->get();
+    }
 }

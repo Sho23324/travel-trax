@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\HotelStoreRequest;
+use App\Http\Requests\HotelUpdateRequest;
 use App\Http\Resources\HotelResource;
 use App\Repositories\Hotel\HotelRepositoryInterface;
 use Illuminate\Http\Request;
@@ -27,9 +29,11 @@ class HotelController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(HotelStoreRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $createdHotel = $this->hotelRepository->store($validatedData);
+        return $this->success($createdHotel, "Hotels retrieved successfully", 201);
     }
 
     /**
@@ -45,9 +49,11 @@ class HotelController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(HotelUpdateRequest $request, string $id)
     {
-        //
+        $validatedData = $request->validated();
+        $updatedHotel = $this->hotelRepository->update($id, $validatedData);
+        return $this->success($updatedHotel, "Hotel updated successfully", 200);
     }
 
     /**
@@ -55,7 +61,8 @@ class HotelController extends BaseController
      */
     public function destroy(string $id)
     {
-        //
+        $this->hotelRepository->delete($id);
+        return $this->success(null, "Hotel details", 204);
     }
 
     public function getHotelAverageRatings(string $id) {
